@@ -3,3 +3,39 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+input {
+  outline: none;
+  border-radius: 5px;
+  border-top: none;
+  padding-left: 8px;
+  height: 30px;
+}
+
+button {
+  padding: 10px 8px;
+  border: none;
+}
+
+.mt-1 {
+  margin-top: 0.8rem;
+}
+.mt-2 {
+  margin-top: 1.5rem;
+}
+
+.mt-3 {
+  margin-top: 2rem;
+}
+
+.mt-4 {
+  margin-top: 2.8rem;
+}
+
+.mt-5 {
+  margin-top: 4.2rem;
+}
+
+.text-center {
+  text-align: center;
+}
