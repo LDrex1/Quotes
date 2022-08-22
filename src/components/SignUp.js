@@ -1,33 +1,24 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import styled from "styled-components";
+import { auth } from "./../firebase-config";
+import AuthForm from "./AuthForm";
 
 function SignUp() {
+  console.log(auth);
+  console.log(process.env);
+  const usernameInputDisplay = {};
+  const confirmPasswordInputDisplay = {};
   return (
     <>
-      <Form>
-        <InputDiv>
-          <Input
-            type={"text"}
-            pattern={/\b[a-z_][a-z_]+\d*\b|[a-z_]\d\d+/}
-            placeholder={"Username"}
-          ></Input>
-        </InputDiv>
-        <InputDiv>
-          <Input type={"password"} pattern={/c/}></Input>
-        </InputDiv>
-        <ButtonsDiv>
-          <Button></Button>
-          <Button></Button>
-        </ButtonsDiv>
-      </Form>
+      <AuthForm
+        usernameInputDisplay={usernameInputDisplay}
+        confirmPasswordInputDisplay={confirmPasswordInputDisplay}
+        firstButton={"Sign Up"}
+        secondButton={"Sign Up with Google"}
+      />
     </>
   );
 }
 
 export default SignUp;
-const Form = styled.form``;
-
-const InputDiv = styled.div``;
-
-const Input = styled.input``;
