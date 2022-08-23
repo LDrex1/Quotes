@@ -10,11 +10,13 @@ input {
   border-top: none;
   padding-left: 8px;
   height: 30px;
+  /* background: ; */
 }
 
 button {
-  padding: 10px 8px;
+  padding: 8px 8px;
   border: none;
+  /* border: 0.2px solid #343434; */
 }
 
 .mt-1 {
@@ -38,4 +40,14 @@ button {
 
 .text-center {
   text-align: center;
+}
+
+.container {
+  width: 75%;
+}
+
+@media screen and (min-width: 992px) {
+  .container {
+    width: 95%;
+  }
 }
