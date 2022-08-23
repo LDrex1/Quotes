@@ -24,7 +24,10 @@ function SignUp() {
 export default SignUp;
 
 const Wrapper = styled.div`
+  width: 100%;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: background ease-out 900ms;
 `;
