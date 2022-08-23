@@ -20,41 +20,54 @@ function AuthForm(props) {
   return (
     <>
       <Form onSubmit={onSubmit} formType={props.formType}>
-        <InputDiv style={props.usernameInputDisplay}>
-          <Input
-            ref={usernameRef}
-            type={"text"}
-            pattern={usernamePattern}
-            placeholder={"Username"}
-            required={props.usernameRequired}
-          ></Input>
-        </InputDiv>
-        <InputDiv className="">
-          <Input
-            ref={emailRef}
-            type={"email"}
-            inputMode={"email"}
-            placeholder={"Email"}
-            required
-          ></Input>
-        </InputDiv>
-        <InputDiv>
-          <Input
-            ref={passwordRef}
-            type={"password"}
-            pattern={passwordPattern}
-            placeholder={"Password"}
-            required
-          ></Input>
-        </InputDiv>
-        <InputDiv style={props.confirmPasswordInputDisplay}>
-          <Input
-            ref={confirmPasswordRef}
-            type={"password"}
-            placeholder={"Confirm Password"}
-            required={props.confirmPasswordRequired}
-          ></Input>
-        </InputDiv>
+        <InputGroup>
+          <InputDiv style={props.usernameInputDisplay}>
+            <Input
+              ref={usernameRef}
+              type={"text"}
+              pattern={usernamePattern}
+              placeholder={"Username"}
+              required={props.usernameRequired}
+            ></Input>
+          </InputDiv>
+          <InputDiv className="">
+            <Input
+              ref={emailRef}
+              type={"email"}
+              inputMode={"email"}
+              placeholder={"Email"}
+              required
+            ></Input>
+          </InputDiv>
+          <InputDiv>
+            <Input
+              ref={passwordRef}
+              type={"password"}
+              pattern={passwordPattern}
+              placeholder={"Password"}
+              required
+            ></Input>
+          </InputDiv>
+          <InputDiv style={props.confirmPasswordInputDisplay}>
+            <Input
+              ref={confirmPasswordRef}
+              type={"password"}
+              placeholder={"Confirm Password"}
+              required={props.confirmPasswordRequired}
+            ></Input>
+          </InputDiv>
+        </InputGroup>
+        <Div>
+          {props.formType === "sign-in" ? (
+            <p className="text-center">
+              New to the quotes app? click <a>here</a> to create an account
+            </p>
+          ) : (
+            <p className="text-center">
+              Already have a account? click <a>here</a> to sign in
+            </p>
+          )}
+        </Div>
         <ButtonsDiv className="">
           <Button>{props.firstButton}</Button>
           <Button className="second">
@@ -72,11 +85,23 @@ function AuthForm(props) {
 export default AuthForm;
 
 const Form = styled.form`
-  width: 70%;
+  background: #ffffff;
+  width: 90%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  row-gap: ${(props) => (props.formType == "sign-in" ? "25px" : "14px")};
+  row-gap: ${(props) => (props.formType == "sign-in" ? "25px" : "18px")};
+
+  @media ${device.mobileL} {
+    width: 70%;
+  }
+`;
+
+const InputGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: ${(props) => (props.formType == "sign-in" ? "25px" : "18px")};
 `;
 
 const InputDiv = styled.div`
@@ -94,6 +119,8 @@ const Input = styled.input`
     width: 80%;
   }
 `;
+
+const Div = styled.div``;
 
 const ButtonsDiv = styled.div`
   display: flex;
