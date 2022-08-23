@@ -10,7 +10,7 @@ input {
   border-top: none;
   padding-left: 8px;
   height: 30px;
-  /* background: ; */
+  font-size: 17px;
 }
 
 button {
@@ -47,6 +47,9 @@ button {
 }
 
 @media screen and (min-width: 992px) {
+  input {
+    font-size: 19px;
+  }
   .container {
     width: 95%;
   }
