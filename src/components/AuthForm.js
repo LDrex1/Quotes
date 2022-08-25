@@ -85,6 +85,9 @@ function AuthForm(props) {
 export default AuthForm;
 
 const Form = styled.form`
+  border-radius: 8px;
+  padding-top: 50px;
+  padding-bottom: 10px;
   background: #ffffff;
   width: 90%;
   display: flex;
