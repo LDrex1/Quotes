@@ -17,6 +17,7 @@ button {
   padding: 8px 8px;
   border: none;
   color: inherit;
+  /* background: #333a33; */
 }
 
 ul {
@@ -53,6 +54,26 @@ a {
 
 .container {
   width: 75%;
+}
+
+.fw-400 {
+  font-weight: 400;
+}
+
+.fw-500 {
+  font-weight: 500;
+}
+
+.fw-600 {
+  font-weight: 600;
+}
+
+.fw-700 {
+  font-weight: 700;
+}
+
+.fw-800 {
+  font-weight: 800;
 }
 
 @media screen and (min-width: 992px) {
