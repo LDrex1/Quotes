@@ -1,58 +1,70 @@
 import React from "react";
-import { useState, useRef } from "react";
 import styled from "styled-components";
 import device from "./Devices";
 
 function AuthForm(props) {
-  const usernameRef = useRef();
-  const emailRef = useRef();
-  const passwordRef = useRef();
-  const confirmPasswordRef = useRef();
+  const { formValues, updateFormValues } = props;
+  const handleChange = (ev) => {
+    const { value, name } = ev.target;
+    updateFormValues({ ...formValues, [name]: value });
+  };
+
+  const { username, email, password, confirmPassword } = formValues;
+  console.log(email, password);
   console.log(props.formType);
-  const usernamePattern = /\b[a-z_][a-z_]+\d*\b|\b[a-z_]\d\d+\b/i;
+  const usernamePattern = "\\b[a-z_][a-z_]+\\d*\\b|\\b[a-z_]\\d\\d+\b";
   const passwordPattern =
-    /(?=^.{6,9}$)(=?.*[A-Z])(=?.*\d)|(?=^.{6,9}$)(=?.*\d)(=?.*[A-Z])/;
+    "(?=^.{6,7}$)(=?.*[A-Z])(=?.*\\d*)\\w*|(?=^.{6,7}$)(=?.*\\d*)(=?.*[A-Z])\\w*";
+
   const onSubmit = (ev) => {
     ev.preventDefault();
-    console.log(emailRef.current.value);
   };
-  console.log(passwordRef.current);
+
   return (
     <>
       <Form onSubmit={onSubmit} formType={props.formType}>
         <InputGroup>
           <InputDiv style={props.usernameInputDisplay}>
             <Input
-              ref={usernameRef}
+              onChange={handleChange}
+              name="username"
               type={"text"}
               pattern={usernamePattern}
               placeholder={"Username"}
               required={props.usernameRequired}
+              value={username}
             ></Input>
           </InputDiv>
           <InputDiv className="">
             <Input
-              ref={emailRef}
+              onChange={handleChange}
+              name="email"
               type={"email"}
               inputMode={"email"}
               placeholder={"Email"}
+              value={email}
               required
             ></Input>
           </InputDiv>
           <InputDiv>
             <Input
-              ref={passwordRef}
+              onChange={handleChange}
+              name="password"
               type={"password"}
-              pattern={passwordPattern}
+              title={"Password should contain a number, and a capital letter"}
               placeholder={"Password"}
+              pattern={passwordPattern}
+              value={password}
               required
             ></Input>
           </InputDiv>
           <InputDiv style={props.confirmPasswordInputDisplay}>
             <Input
-              ref={confirmPasswordRef}
+              onChange={handleChange}
+              name="confirmPassword"
               type={"password"}
-              placeholder={"Confirm Password"}
+              placeholder={"Confirm password"}
+              value={confirmPassword}
               required={props.confirmPasswordRequired}
             ></Input>
           </InputDiv>
