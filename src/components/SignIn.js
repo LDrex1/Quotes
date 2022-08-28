@@ -1,11 +1,15 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
+import { getAuth, createUserWithEmailAndPassword } from "@firebase/auth";
+import { auth } from "./../firebase-config";
 import devices from "./Devices";
-import AuthForm from "./AuthForm";
+import AuthForm, { useFormValues } from "./AuthForm";
 import backgroundImages from "./BackgroundImages";
 
 function SignIn() {
+  const [formValues, updateFormValues] = useState({});
+  const { username, email, password } = formValues;
   const { signIn: signInBackgrounds } = backgroundImages;
   const [image, setImage] = useState(signInBackgrounds[0]);
   let backgroundsLength = signInBackgrounds.length;
@@ -19,10 +23,8 @@ function SignIn() {
         ),
       15000
     );
-    console.log("second");
 
     return () => {
-      console.log("cleanUp");
       clearInterval(changeImage);
     };
   }, [image]);
@@ -42,6 +44,8 @@ function SignIn() {
         confirmPasswordRequired={notRequired}
         firstButton={"Sign In"}
         secondButton={"Sign In with Google"}
+        formValues={formValues}
+        updateFormValues={updateFormValues}
       />
     </Wrapper>
   );
