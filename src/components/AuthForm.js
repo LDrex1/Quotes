@@ -11,7 +11,7 @@ function AuthForm(props) {
 
   const { username, email, password, confirmPassword } = formValues;
   console.log(email, password);
-  console.log(props.formType);
+  // console.log(props.formType);
   const usernamePattern = "\\b[a-z_][a-z_]+\\d*\\b|\\b[a-z_]\\d\\d+\b";
   const passwordPattern =
     "(?=^.{6,7}$)(=?.*[A-Z])(=?.*\\d*)\\w*|(?=^.{6,7}$)(=?.*\\d*)(=?.*[A-Z])\\w*";
@@ -22,7 +22,7 @@ function AuthForm(props) {
 
   return (
     <>
-      <Form onSubmit={onSubmit} formType={props.formType}>
+      <Form formType={props.formType}>
         <InputGroup>
           <InputDiv style={props.usernameInputDisplay}>
             <Input
@@ -81,8 +81,10 @@ function AuthForm(props) {
           )}
         </Div>
         <ButtonsDiv className="">
-          <Button>{props.firstButton}</Button>
-          <Button className="second">
+          <Button onClick={props.firstButtonHandler}>
+            {props.firstButton}
+          </Button>
+          <Button onClick={props.secondButtonHandler} className="second">
             <div className="google-logo">
               <img src={require("../images/google_logo.jpg")}></img>
             </div>
