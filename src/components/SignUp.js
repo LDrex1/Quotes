@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import styled from "styled-components";
 import { createUserWithEmailAndPassword } from "@firebase/auth";
+import { collection, doc, setDoc } from "@firebase/firestore";
 import { auth, db } from "./../firebase-config";
 import AuthForm from "./AuthForm";
 
@@ -11,14 +12,28 @@ function SignUp() {
   const usernameInputDisplay = {};
   const confirmPasswordInputDisplay = {};
 
-  const createUser = async (ev) => {
+  const createUser = (ev) => {
     ev.preventDefault();
-    let userUid = await createUserWithEmailAndPassword(auth, email, password)
-      .then((userCred) => {
-        const { user } = userCred;
-        return user.uid;
-      })
-      .catch((err) => console.log(err.code, err.line));
+    (async () => {
+      console.log("clicked");
+      if (password === confirmPassword) {
+        let userUid = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        )
+          .then((userCred) => {
+            const { user } = userCred;
+            return user.uid;
+          })
+          .catch((err) => console.log(err.code, err.line));
+
+        await setDoc(doc(db, "Users", userUid), { username: username });
+        console.log("created");
+      } else {
+        console.error("Password and Confirm Password do not match");
+      }
+    })();
   };
   return (
     <>
@@ -27,7 +42,9 @@ function SignUp() {
           usernameInputDisplay={usernameInputDisplay}
           confirmPasswordInputDisplay={confirmPasswordInputDisplay}
           firstButton={"Sign Up"}
+          firstButtonHandler={createUser}
           secondButton={"Sign Up with Google"}
+          // secondButtonHandler={}
           formValues={formValues}
           updateFormValues={updateFormValues}
         />
