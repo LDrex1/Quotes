@@ -11,12 +11,12 @@ function App() {
   // console.log(useFormValues());
   return (
     <>
-      <SignUp />
+      {/* <SignUp /> */}
 
       {/* <SignIn /> */}
-      {/* <ThemeProvider>
+      <ThemeProvider>
         <QuotesPage />
-      </ThemeProvider> */}
+      </ThemeProvider>
     </>
   );
 }
