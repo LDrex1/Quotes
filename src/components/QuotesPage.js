@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import FooterG from "./Footer";
 import { useTheme } from "./ThemeProvider";
@@ -6,8 +6,7 @@ import QuotesPageHeader from "./QuotesPageHeader";
 import Quotes from "./Quotes";
 
 function QuotesPage() {
-  const theme = useTheme()[0];
-  const toggleTheme = useTheme()[1];
+  const [theme, toggleTheme] = useTheme();
 
   return (
     <Wrapper theme={theme}>
@@ -15,7 +14,7 @@ function QuotesPage() {
         {theme ? "DarkMode" : "LightMode"}
       </Button>
       <QuotesPageHeader />
-      <Main>
+      <Main theme={theme}>
         <Quotes />
       </Main>
       <FooterG />
