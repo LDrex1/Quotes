@@ -1,7 +1,5 @@
 import React from "react";
-import { useContext } from "react";
 import styled from "styled-components";
-import { signOut } from "@firebase/auth";
 import { auth } from "./../firebase-config";
 import device from "./Devices";
 import { useTheme } from "./ThemeProvider";

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useTheme } from "./ThemeProvider";
 
 function Quotes() {
-  const [theme, toggleTheme] = useTheme();
+  const [theme] = useTheme();
 
   return (
     <>

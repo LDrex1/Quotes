@@ -3,7 +3,6 @@ import styled from "styled-components";
 import FooterG from "./Footer";
 import { useTheme } from "./ThemeProvider";
 import QuotesPageHeader from "./QuotesPageHeader";
-import Quotes from "./Quotes";
 import Main from "./Main";
 
 function QuotesPage() {
@@ -15,9 +14,6 @@ function QuotesPage() {
         {theme ? "DarkMode" : "LightMode"}
       </Button>
       <QuotesPageHeader />
-      {/* <Main theme={theme}>
-        <Quotes />
-      </Main> */}
       <Main />
       <FooterG />
     </Wrapper>
