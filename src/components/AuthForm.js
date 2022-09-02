@@ -1,9 +1,16 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import device from "./Devices";
 
 function AuthForm(props) {
-  const { formValues, updateFormValues } = props;
+  const {
+    formType,
+    formValues,
+    updateFormValues,
+    isSignedIn,
+    firstButtonHandler,
+  } = props;
   const handleChange = (ev) => {
     const { value, name } = ev.target;
     updateFormValues({ ...formValues, [name]: value });
@@ -11,18 +18,21 @@ function AuthForm(props) {
 
   const { username, email, password, confirmPassword } = formValues;
   console.log(email, password);
-  // console.log(props.formType);
   const usernamePattern = "\\b[a-z_][a-z_]+\\d*\\b|\\b[a-z_]\\d\\d+\b";
   const passwordPattern =
-    "(?=^.{6,7}$)(=?.*[A-Z])(=?.*\\d*)\\w*|(?=^.{6,7}$)(=?.*\\d*)(=?.*[A-Z])\\w*";
+    "(?=^.{6,10}$)(=?.*[A-Z])(=?.*\\d*)\\w*|(?=^.{6,10}$)(=?.*\\d*)(=?.*[A-Z])\\w*";
 
   const onSubmit = (ev) => {
-    ev.preventDefault();
+    if (ev.target.checkValidity()) {
+      ev.preventDefault();
+      firstButtonHandler();
+      console.log("very valid");
+    }
   };
 
   return (
     <>
-      <Form formType={props.formType}>
+      <Form onSubmit={onSubmit} formType={formType}>
         <InputGroup>
           <InputDiv style={props.usernameInputDisplay}>
             <Input
@@ -70,20 +80,26 @@ function AuthForm(props) {
           </InputDiv>
         </InputGroup>
         <Div>
-          {props.formType === "sign-in" ? (
+          {formType === "sign-in" ? (
             <p className="text-center">
-              New to the quotes app? click <a>here</a> to create an account
+              New to the quotes app? click{" "}
+              <a>
+                <Link to={"/sign-up"}>here</Link>
+              </a>{" "}
+              to create an account
             </p>
           ) : (
             <p className="text-center">
-              Already have a account? click <a>here</a> to sign in
+              Already have a account? click{" "}
+              <a>
+                <Link to={"/"}>here</Link>
+              </a>{" "}
+              to sign in
             </p>
           )}
         </Div>
         <ButtonsDiv className="">
-          <Button onClick={props.firstButtonHandler}>
-            {props.firstButton}
-          </Button>
+          <Button type="submit">{props.firstButton}</Button>
           <Button onClick={props.secondButtonHandler} className="second">
             <div className="google-logo">
               <img src={require("../images/google_logo.jpg")}></img>
@@ -137,7 +153,11 @@ const Input = styled.input`
   }
 `;
 
-const Div = styled.div``;
+const Div = styled.div`
+  a {
+    text-decoration: underline;
+  }
+`;
 
 const ButtonsDiv = styled.div`
   display: flex;
@@ -176,5 +196,3 @@ const Button = styled.button`
       }
   }
 `;
-
-const Container = styled.div``;
