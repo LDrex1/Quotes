@@ -1,15 +1,18 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { getAuth, createUserWithEmailAndPassword } from "@firebase/auth";
+import { signInWithEmailAndPassword } from "@firebase/auth";
 import { auth } from "./../firebase-config";
-import devices from "./Devices";
 import AuthForm, { useFormValues } from "./AuthForm";
 import backgroundImages from "./BackgroundImages";
 
+// const SignedInContext = React.createContext();
 function SignIn() {
+  const navigate = useNavigate();
   const [formValues, updateFormValues] = useState({});
-  const { username, email, password } = formValues;
+
+  const { email, password } = formValues;
   const { signIn: signInBackgrounds } = backgroundImages;
   const [image, setImage] = useState(signInBackgrounds[0]);
   let backgroundsLength = signInBackgrounds.length;
@@ -29,6 +32,12 @@ function SignIn() {
     };
   }, [image]);
 
+  const signInHandler = (ev) => {
+    signInWithEmailAndPassword(auth, email, password).then((userCred) => {
+      navigate("/quotes");
+    });
+  };
+
   const noDisplay = {
     display: "none",
   };
@@ -43,6 +52,7 @@ function SignIn() {
         confirmPasswordInputDisplay={noDisplay}
         confirmPasswordRequired={notRequired}
         firstButton={"Sign In"}
+        firstButtonHandler={signInHandler}
         secondButton={"Sign In with Google"}
         formValues={formValues}
         updateFormValues={updateFormValues}
