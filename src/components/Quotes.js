@@ -1,17 +1,41 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { collection, getDocs } from "@firebase/firestore";
+import { db } from "../firebase-config";
 import { useTheme } from "./ThemeProvider";
 
 function Quotes() {
+  const [quotesData, setQuotesData] = useState([]);
   const [theme] = useTheme();
+
+  const getQuotes = async () => {
+    const collectionquerry = collection(db, "Quotes");
+    const snapshot = await getDocs(collectionquerry);
+    const allQuotes = snapshot.docs;
+    // console.log(allQuotes);
+    setQuotesData(allQuotes);
+    console.log(quotesData);
+  };
+
+  useEffect(() => {
+    getQuotes();
+  }, []);
 
   return (
     <>
       <QuotesDiv theme={theme}>
-        <P>
-          <q>Never Give up</q>
-        </P>
-        <H5>demo</H5>
+        {quotesData.map((quoteData) => {
+          const { date, quote, username, time } = quoteData.data();
+
+          return (
+            <>
+              <P>
+                <q>{quote}</q>
+              </P>
+              <H5>{username}</H5>
+            </>
+          );
+        })}
       </QuotesDiv>
     </>
   );
