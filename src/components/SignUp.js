@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { createUserWithEmailAndPassword } from "@firebase/auth";
 import { collection, doc, setDoc } from "@firebase/firestore";
@@ -11,6 +12,8 @@ function SignUp() {
   const { username, email, password, confirmPassword } = formValues;
   const usernameInputDisplay = {};
   const confirmPasswordInputDisplay = {};
+
+  const navigate = useNavigate();
 
   const createUser = (ev) => {
     ev.preventDefault();
@@ -29,6 +32,7 @@ function SignUp() {
           .catch((err) => console.log(err.code, err.line));
 
         await setDoc(doc(db, "Users", userUid), { username: username });
+        navigate("/");
         console.log("created");
       } else {
         console.error("Password and Confirm Password do not match");
