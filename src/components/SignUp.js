@@ -15,8 +15,7 @@ function SignUp() {
 
   const navigate = useNavigate();
 
-  const createUser = (ev) => {
-    ev.preventDefault();
+  const createUser = () => {
     (async () => {
       console.log("clicked");
       if (password === confirmPassword) {
