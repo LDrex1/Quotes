@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/quotes/static/css/main.d9f283c6.css",
-    "main.js": "/quotes/static/js/main.60681cea.js",
-    "static/js/787.43cbfe13.chunk.js": "/quotes/static/js/787.43cbfe13.chunk.js",
-    "static/media/image_1.jpg": "/quotes/static/media/image_1.0d0aaaaacb23e45f177f.jpg",
-    "static/media/plato.jpg": "/quotes/static/media/plato.93793b35a43e49312875.jpg",
-    "index.html": "/quotes/index.html",
-    "main.d9f283c6.css.map": "/quotes/static/css/main.d9f283c6.css.map",
-    "main.60681cea.js.map": "/quotes/static/js/main.60681cea.js.map",
-    "787.43cbfe13.chunk.js.map": "/quotes/static/js/787.43cbfe13.chunk.js.map"
+    "main.css": "/Quotes/static/css/main.d9f283c6.css",
+    "main.js": "/Quotes/static/js/main.37b885f4.js",
+    "static/js/787.43cbfe13.chunk.js": "/Quotes/static/js/787.43cbfe13.chunk.js",
+    "static/media/image_1.jpg": "/Quotes/static/media/image_1.0d0aaaaacb23e45f177f.jpg",
+    "static/media/plato.jpg": "/Quotes/static/media/plato.93793b35a43e49312875.jpg",
+    "index.html": "/Quotes/index.html",
+    "main.d9f283c6.css.map": "/Quotes/static/css/main.d9f283c6.css.map",
+    "main.37b885f4.js.map": "/Quotes/static/js/main.37b885f4.js.map",
+    "787.43cbfe13.chunk.js.map": "/Quotes/static/js/787.43cbfe13.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.d9f283c6.css",
-    "static/js/main.60681cea.js"
+    "static/js/main.37b885f4.js"
   ]
 }
