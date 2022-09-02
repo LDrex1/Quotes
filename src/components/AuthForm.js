@@ -100,12 +100,12 @@ function AuthForm(props) {
         </Div>
         <ButtonsDiv className="">
           <Button type="submit">{props.firstButton}</Button>
-          <Button onClick={props.secondButtonHandler} className="second">
+          {/* <Button onClick={props.secondButtonHandler} className="second">
             <div className="google-logo">
               <img src={require("../images/google_logo.jpg")}></img>
             </div>
             <div>{props.secondButton}</div>
-          </Button>
+          </Button> */}
         </ButtonsDiv>
       </Form>
     </>
