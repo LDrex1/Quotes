@@ -8,7 +8,7 @@ function AuthForm(props) {
     formType,
     formValues,
     updateFormValues,
-    isSignedIn,
+
     firstButtonHandler,
   } = props;
   const handleChange = (ev) => {
@@ -24,6 +24,7 @@ function AuthForm(props) {
 
   const onSubmit = (ev) => {
     if (ev.target.checkValidity()) {
+      console.log("true");
       ev.preventDefault();
       firstButtonHandler();
       console.log("very valid");
@@ -82,19 +83,13 @@ function AuthForm(props) {
         <Div>
           {formType === "sign-in" ? (
             <p className="text-center">
-              New to the quotes app? click{" "}
-              <a>
-                <Link to={"/sign-up"}>here</Link>
-              </a>{" "}
-              to create an account
+              New to the quotes app? click <Link to={"/sign-up"}>here</Link> to
+              create an account
             </p>
           ) : (
             <p className="text-center">
-              Already have a account? click{" "}
-              <a>
-                <Link to={"/"}>here</Link>
-              </a>{" "}
-              to sign in
+              Already have a account? click <Link to={"/"}>here</Link> to sign
+              in
             </p>
           )}
         </Div>
@@ -123,7 +118,7 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  row-gap: ${(props) => (props.formType == "sign-in" ? "25px" : "18px")};
+  row-gap: ${(props) => (props.formType === "sign-in" ? "25px" : "18px")};
 
   @media ${device.mobileL} {
     width: 70%;
@@ -134,7 +129,7 @@ const InputGroup = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  row-gap: ${(props) => (props.formType == "sign-in" ? "25px" : "18px")};
+  row-gap: ${(props) => (props.formType === "sign-in" ? "25px" : "18px")};
 `;
 
 const InputDiv = styled.div`

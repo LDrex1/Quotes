@@ -1,14 +1,14 @@
 import React from "react";
 import { useState, useRef } from "react";
 import styled from "styled-components";
-import { doc, setDoc, getDoc, collection } from "@firebase/firestore";
+import { doc, setDoc, getDoc } from "@firebase/firestore";
 import { auth, db } from "../firebase-config";
 import calender from "./Calender";
 
 function CreateQuote() {
   const quoteInput = useRef();
   const [inputStyle, setInputStyle] = useState({ visibility: "hidden" });
-
+  const { visibility } = inputStyle;
   const openCreateInputHandler = () => {
     setInputStyle((current) => {
       return {
@@ -47,7 +47,9 @@ function CreateQuote() {
 
   return (
     <Container>
-      <p onClick={openCreateInputHandler}>create</p>
+      <p onClick={openCreateInputHandler}>
+        {visibility === "hidden" ? "Create" : "Cancel"}
+      </p>
       <CreateQuoteForm style={inputStyle}>
         <Input ref={quoteInput}></Input>
         <Button onClick={createQuoteHandler}>Create Quote</Button>
