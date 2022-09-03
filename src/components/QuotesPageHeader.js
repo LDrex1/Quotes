@@ -1,16 +1,18 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { signOut } from "@firebase/auth";
 import { auth } from "./../firebase-config";
 import device from "./Devices";
 import { useTheme } from "./ThemeProvider";
 
 function QuotesPageHeader() {
+  const navigate = useNavigate();
   const [theme] = useTheme();
-  const signOut = (ev) => {
-    ev.preventDefault();
+  const signOutHandler = (ev) => {
     (async () => {
-      let signedOut = await signOut(auth);
-      signedOut.then((resp) => console.log(resp, "out"));
+      let signedOut = signOut(auth);
+      signedOut.then((resp) => navigate("/"));
     })();
   };
 
@@ -30,7 +32,7 @@ function QuotesPageHeader() {
                 <A>Edit profile</A>
               </Li>
               <Li>
-                <Button onClick={signOut}>Log Out</Button>
+                <Button onClick={signOutHandler}>Log Out</Button>
               </Li>
             </Ul>
           </Div>
@@ -94,6 +96,7 @@ const Ul = styled.ul`
   position: absolute;
   top: 24px;
   width: 100%;
+  z-index: 1;
 `;
 
 const Li = styled.li`
