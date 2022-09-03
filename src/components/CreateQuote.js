@@ -82,6 +82,7 @@ const CreateQuoteForm = styled.div`
   left: 50%;
   transform: translatex(-50%);
   position: absolute;
+  z-index: 1;
 `;
 
 const Input = styled.textarea`
