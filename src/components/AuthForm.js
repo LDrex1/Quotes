@@ -1,16 +1,14 @@
 import React from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import device from "./Devices";
+import Logo from "./Logo";
 
 function AuthForm(props) {
-  const {
-    formType,
-    formValues,
-    updateFormValues,
+  const { formType, formValues, updateFormValues, firstButtonHandler, errMsg } =
+    props;
 
-    firstButtonHandler,
-  } = props;
   const handleChange = (ev) => {
     const { value, name } = ev.target;
     updateFormValues({ ...formValues, [name]: value });
@@ -24,7 +22,6 @@ function AuthForm(props) {
 
   const onSubmit = (ev) => {
     if (ev.target.checkValidity()) {
-      console.log("true");
       ev.preventDefault();
       firstButtonHandler();
       console.log("very valid");
@@ -33,6 +30,7 @@ function AuthForm(props) {
 
   return (
     <>
+      <Logo />
       <Form onSubmit={onSubmit} formType={formType}>
         <InputGroup>
           <InputDiv style={props.usernameInputDisplay}>
@@ -62,7 +60,9 @@ function AuthForm(props) {
               onChange={handleChange}
               name="password"
               type={"password"}
-              title={"Password should contain a number, and a capital letter"}
+              title={
+                "Password should contain 6-10 characters including a number, and a capital letter"
+              }
               placeholder={"Password"}
               pattern={passwordPattern}
               value={password}
@@ -80,6 +80,9 @@ function AuthForm(props) {
             ></Input>
           </InputDiv>
         </InputGroup>
+        <P errMsg={errMsg} className="text-center fw-500">
+          {errMsg}
+        </P>
         <Div>
           {formType === "sign-in" ? (
             <p className="text-center">
@@ -113,12 +116,25 @@ const Form = styled.form`
   border-radius: 8px;
   padding-top: 50px;
   padding-bottom: 10px;
-  background: #ffffff;
+  background: rgb(217, 217, 217,0.5);
   width: 90%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  row-gap: ${(props) => (props.formType === "sign-in" ? "25px" : "18px")};
+  row-gap: ${(props) => (props.formType ? "25px" : "18px")};
+  position relative;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: ${(props) =>
+      props.formType ? "rgb(128, 255, 191)" : "#ffffff"};
+    opacity: 0.06;
+    pointer-events: none;
+  }
 
   @media ${device.mobileL} {
     width: 70%;
@@ -140,11 +156,15 @@ const Input = styled.input`
   width: 80%;
   &:focus {
     border: 3px #144f7c;
-    box-shadow: 0.4px 0px 1.2px 1px #1a659d;
+    box-shadow: 0.4px 0px 1.2px 1px #00ff00;
   }
+  font-size: 17px;
   @media ${device.mobileL} {
-    background: black;
-    width: 80%;
+    font-size: 18px;
+    &:focus {
+      background: #222222;
+      color: whitesmoke;
+    }
   }
 `;
 
@@ -152,6 +172,11 @@ const Div = styled.div`
   a {
     text-decoration: underline;
   }
+`;
+
+const P = styled.p`
+  display: ${(props) => (props.errMsg ? "block" : "none")};
+  color: #e62e00;
 `;
 
 const ButtonsDiv = styled.div`
