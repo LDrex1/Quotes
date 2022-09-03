@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { collection, getDocs } from "@firebase/firestore";
+import { collection, onSnapshot } from "@firebase/firestore";
 import { db } from "../firebase-config";
 import { useTheme } from "./ThemeProvider";
 
@@ -10,11 +10,9 @@ function Quotes() {
 
   const getQuotes = async () => {
     const collectionquerry = collection(db, "Quotes");
-    const snapshot = await getDocs(collectionquerry);
-    const allQuotes = snapshot.docs;
-    // console.log(allQuotes);
-    setQuotesData(allQuotes);
-    console.log(quotesData);
+    const snapshot = onSnapshot(collectionquerry, (snapshot) => {
+      setQuotesData(snapshot.docs);
+    });
   };
 
   useEffect(() => {
@@ -23,20 +21,21 @@ function Quotes() {
 
   return (
     <>
-      <QuotesDiv theme={theme}>
-        {quotesData.map((quoteData) => {
-          const { date, quote, username, time } = quoteData.data();
+      {quotesData.map((quoteData) => {
+        const { date, quote, username, time } = quoteData.data();
 
-          return (
-            <>
-              <P>
-                <q>{quote}</q>
-              </P>
-              <H5>{username}</H5>
-            </>
-          );
-        })}
-      </QuotesDiv>
+        return (
+          <QuotesDiv className="mb-1" theme={theme}>
+            <P>
+              <q>{quote}</q>
+            </P>
+            <H6>
+              {date} {time}
+            </H6>
+            <H5>{username}</H5>
+          </QuotesDiv>
+        );
+      })}
     </>
   );
 }
@@ -48,8 +47,11 @@ const QuotesDiv = styled.div`
   background: ${(props) => (props.theme === true ? "#f4f7f5" : "#232723")};
   width: 80%;
   padding: 8px;
-  height: 55px;
-  margin: auto;
+  height: 58px;
+  max-height: 70px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
 `;
 
 const P = styled.div`
@@ -58,4 +60,10 @@ const P = styled.div`
 
 const H5 = styled.h5`
   text-align: end;
+`;
+
+const H6 = styled.h6`
+  position: absolute;
+  top: 2px;
+  right: 8px;
 `;
