@@ -9,17 +9,18 @@ textarea {
   outline: none;
   border-radius: 5px;
   border-top: none;
-  padding-left: 8px;
-  height: 30px;
+  border-color: #00cc00;
+  padding: 5px 8px;
+  height: auto;
   font-size: 17px;
 }
 
 button {
+  background: rgb(0, 230, 0, 0.4);
+  border-radius: 3px;
   padding: 8px 8px;
   border: none;
   color: inherit;
-  /* background: #827727; */
-  /* visibility: visible; */
 }
 
 ul {
@@ -29,6 +30,10 @@ ul {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+a:hover {
+  color: #00cc00;
 }
 
 .mt-1 {
