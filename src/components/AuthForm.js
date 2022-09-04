@@ -40,7 +40,7 @@ function AuthForm(props) {
   return (
     <>
       <Logo />
-      <Form onClick={handleActive} onSubmit={onSubmit} formType={formType}>
+      <Form onTouchStart={handleActive} onSubmit={onSubmit} formType={formType}>
         <InputGroup>
           <InputDiv style={props.usernameInputDisplay}>
             <Input
