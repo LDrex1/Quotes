@@ -34,6 +34,7 @@ function CreateQuote() {
           date: `${date}/${month.slice(0, 3)}/${year}`,
           quote: quote,
           username: username,
+          likes: 0,
         });
         setInputStyle((current) => {
           return {
