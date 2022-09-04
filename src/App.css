@@ -112,19 +112,19 @@ a:hover {
 }
 
 @media (pointer: coarse), (hover: none) {
-  [title] {
+  input[title] {
     position: relative;
-    display: inline-flex;
+    display: flex;
     justify-content: center;
   }
 
-  [title]:focus::after {
+  input[title]:focus::after {
     content: attr(title);
     position: absolute;
     top: 90%;
     color: #000;
     background-color: #fff;
-    border: 1px solid;
+    border: 1px solid red;
     width: fit-content;
     padding: 3px;
   }
