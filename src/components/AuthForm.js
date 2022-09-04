@@ -14,6 +14,7 @@ function AuthForm(props) {
   const handleActive = () => {
     setActiveElement(passwordRef.current === document.activeElement);
   };
+  console.log(activeElement);
 
   const handleChange = (ev) => {
     const { value, name } = ev.target;
@@ -37,11 +38,11 @@ function AuthForm(props) {
   return (
     <>
       <Logo />
-      <Form onSubmit={onSubmit} formType={formType}>
+      <Form onTouchStart={handleActive} onSubmit={onSubmit} formType={formType}>
         <InputGroup>
           <InputDiv style={props.usernameInputDisplay}>
             <Input
-              onFocus={handleActive}
+              // onFocus={handleActive}
               onChange={handleChange}
               name="username"
               type={"text"}
@@ -53,7 +54,7 @@ function AuthForm(props) {
           </InputDiv>
           <InputDiv className="">
             <Input
-              onFocus={handleActive}
+              // onFocus={handleActive}
               onChange={handleChange}
               name="email"
               type={"email"}
@@ -70,7 +71,7 @@ function AuthForm(props) {
             // passwordFoc={passwordFoc}
           >
             <Input
-              onFocus={handleActive}
+              // onFocus={handleActive}
               ref={passwordRef}
               onChange={handleChange}
               name="password"
@@ -86,7 +87,7 @@ function AuthForm(props) {
           </InputDiv>
           <InputDiv style={props.confirmPasswordInputDisplay}>
             <Input
-              onFocus={handleActive}
+              // onFocus={handleActive}
               onChange={handleChange}
               name="confirmPassword"
               type={"password"}
