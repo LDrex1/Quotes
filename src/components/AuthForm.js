@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import device from "./Devices";
@@ -8,6 +8,12 @@ import Logo from "./Logo";
 function AuthForm(props) {
   const { formType, formValues, updateFormValues, firstButtonHandler, errMsg } =
     props;
+  const passwordRef = useRef();
+  const [activeElement, setActiveElement] = useState(false);
+
+  const handleActive = () => {
+    setActiveElement(passwordRef.current === document.activeElement);
+  };
 
   const handleChange = (ev) => {
     const { value, name } = ev.target;
@@ -35,6 +41,7 @@ function AuthForm(props) {
         <InputGroup>
           <InputDiv style={props.usernameInputDisplay}>
             <Input
+              onFocus={handleActive}
               onChange={handleChange}
               name="username"
               type={"text"}
@@ -46,6 +53,7 @@ function AuthForm(props) {
           </InputDiv>
           <InputDiv className="">
             <Input
+              onFocus={handleActive}
               onChange={handleChange}
               name="email"
               type={"email"}
@@ -55,8 +63,15 @@ function AuthForm(props) {
               required
             ></Input>
           </InputDiv>
-          <InputDiv>
+          <InputDiv
+            className="input-div"
+            title="Password should contain 6-10 characters including a number, and a capital letter"
+            passwordActive={activeElement}
+            // passwordFoc={passwordFoc}
+          >
             <Input
+              onFocus={handleActive}
+              ref={passwordRef}
               onChange={handleChange}
               name="password"
               type={"password"}
@@ -71,6 +86,7 @@ function AuthForm(props) {
           </InputDiv>
           <InputDiv style={props.confirmPasswordInputDisplay}>
             <Input
+              onFocus={handleActive}
               onChange={handleChange}
               name="confirmPassword"
               type={"password"}
@@ -150,6 +166,10 @@ const InputGroup = styled.div`
 
 const InputDiv = styled.div`
   text-align: center;
+
+  &.input-div::after {
+    display: ${(props) => (props.passwordActive ? "block" : "none")};
+  }
 `;
 
 const Input = styled.input`
