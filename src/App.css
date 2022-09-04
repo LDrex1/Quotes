@@ -112,20 +112,23 @@ a:hover {
 }
 
 @media (pointer: coarse), (hover: none) {
-  input[title] {
+  .input-div[title] {
     position: relative;
     display: flex;
     justify-content: center;
   }
 
-  input[title]:focus::after {
+  .input-div[title]::after {
+    display: none;
     content: attr(title);
     position: absolute;
-    top: 90%;
-    color: #000;
-    background-color: #fff;
-    border: 1px solid red;
+    top: 100%;
+    color: rgb(23, 29, 23);
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(151, 41, 41);
+    border-radius: 4px;
     width: fit-content;
+    max-width: 210px;
     padding: 3px;
   }
 }
