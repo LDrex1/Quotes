@@ -1,3 +1,4 @@
+import { async } from "@firebase/util";
 import React from "react";
 import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -13,8 +14,9 @@ function AuthForm(props) {
 
   const handleActive = () => {
     setActiveElement(passwordRef.current === document.activeElement);
+    console.log(passwordRef.current);
+    console.log(document.activeElement, "active");
   };
-  console.log(activeElement);
 
   const handleChange = (ev) => {
     const { value, name } = ev.target;
@@ -38,7 +40,7 @@ function AuthForm(props) {
   return (
     <>
       <Logo />
-      <Form onTouchStart={handleActive} onSubmit={onSubmit} formType={formType}>
+      <Form onClick={handleActive} onSubmit={onSubmit} formType={formType}>
         <InputGroup>
           <InputDiv style={props.usernameInputDisplay}>
             <Input
