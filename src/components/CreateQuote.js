@@ -9,10 +9,11 @@ function CreateQuote() {
   const quoteInput = useRef();
   const [inputStyle, setInputStyle] = useState({ visibility: "hidden" });
   const { visibility } = inputStyle;
+
   const openCreateInputHandler = () => {
-    setInputStyle((current) => {
+    setInputStyle(({ visibility }) => {
       return {
-        visibility: current.visibility === "visible" ? "hidden" : "visible",
+        visibility: visibility === "visible" ? "hidden" : "visible",
       };
     });
   };
@@ -22,9 +23,7 @@ function CreateQuote() {
       const user = auth.currentUser;
       console.log("started");
       if (user !== null) {
-        const { minutes, hours, date, month, year } = calender();
-        const minutesPad = ("00" + minutes).slice(-2);
-        const hoursPad = ("00" + hours).slice(-2);
+        const { minutesPad, hoursPad, date, month, year } = calender();
         const { uid } = user;
         const quote = quoteInput.current.value;
         const userSnapshot = await getDoc(doc(db, "Users", uid));
@@ -34,13 +33,10 @@ function CreateQuote() {
           date: `${date}/${month.slice(0, 3)}/${year}`,
           quote: quote,
           username: username,
-          likes: 0,
+          likes: [],
         });
-        setInputStyle((current) => {
-          return {
-            visibility: current.visibility === "visible" ? "hidden" : "visible",
-          };
-        });
+        openCreateInputHandler();
+        quoteInput.current.value = null;
         console.log("done");
       }
     })();
@@ -90,9 +86,6 @@ const Input = styled.textarea`
   margin: auto;
   width: 85%;
   height: 60px;
-
-  //   &:focus {
-  //   }
 `;
 
 const Button = styled.button`
