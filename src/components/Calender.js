@@ -1,4 +1,3 @@
-import React from "react";
 export const calenderMonths = [
   "January",
   "February",
@@ -33,9 +32,14 @@ function Calender() {
   const hours = date.getHours();
   const month = calenderMonths[monthIndex];
   const weekDay = calenderDays[dayIndex];
+  const minutesPad = ("00" + minutes).slice(-2);
+  const hoursPad = ("00" + hours).slice(-2);
+
   return {
     minutes: minutes,
+    minutesPad: minutesPad,
     hours: hours,
+    hoursPad: hoursPad,
     month: month,
     day: weekDay,
     year: year,
