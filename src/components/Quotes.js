@@ -4,7 +4,6 @@ import { onAuthStateChanged } from "@firebase/auth";
 import { collection, onSnapshot, getDocs, setDoc } from "@firebase/firestore";
 import { auth, db } from "../firebase-config";
 import { useTheme } from "./ThemeProvider";
-import { async } from "@firebase/util";
 
 function Quotes() {
   const [quotesData, setQuotesData] = useState([]);
@@ -17,18 +16,15 @@ function Quotes() {
     });
   };
 
-  //   useEffect(()=>{
-  //     onAuthStateChanged()
-  //   },[])
-
   const likeHandler = () => {
     (async () => {
       const { uid } = auth.currentUser;
-      const querry = collection(db, "Users");
-      const usernameDocs = (await getDocs(querry)).docs;
+      const query1 = collection(db, "Users");
+      const usernameDocs = (await getDocs(query1)).docs;
       let result = usernameDocs.filter((element) => element.id === uid);
       const { username } = result[0].data();
       console.log(username);
+      const query2 = collection(db, "Quotes");
     })();
   };
 
@@ -40,7 +36,7 @@ function Quotes() {
 
   return (
     <>
-      {quotesData.map((quoteData) => {
+      {quotesData.map((quoteData, index) => {
         const { date, quote, username, time } = quoteData.data();
 
         return (
