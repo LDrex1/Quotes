@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useRef } from "react";
 import styled from "styled-components";
-import { doc, setDoc, getDoc } from "@firebase/firestore";
+import { Timestamp, doc, setDoc, getDoc } from "@firebase/firestore";
 import { auth, db } from "../firebase-config";
 import calender from "./Calender";
 
@@ -34,6 +34,7 @@ function CreateQuote() {
           quote: quote,
           username: username,
           likes: [],
+          createdAt: Timestamp.now().toDate(),
         });
         openCreateInputHandler();
         quoteInput.current.value = null;
