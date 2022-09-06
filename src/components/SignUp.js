@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { createUserWithEmailAndPassword } from "@firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "@firebase/auth";
 import { doc, setDoc } from "@firebase/firestore";
 import { auth, db } from "./../firebase-config";
 import AuthForm from "./AuthForm";
@@ -36,30 +36,25 @@ function SignUp() {
     };
   }, [image]);
 
-  const createUser = () => {
-    (async () => {
-      console.log("clicked");
-      setErrMsg("");
-      if (password === confirmPassword) {
-        let userUid = await createUserWithEmailAndPassword(
-          auth,
-          email,
-          password
-        )
-          .then((userCred) => {
-            const { user } = userCred;
-            return user.uid;
-          })
-          .catch((err) => console.log(err.code, err.line));
-
-        await setDoc(doc(db, "Users", userUid), { username: username });
-        navigate("/");
-        console.log("created");
-      } else {
-        setErrMsg("Password and Confirm Password do not match");
-      }
-    })();
+  const createUser = async () => {
+    console.log("clicked");
+    setErrMsg("");
+    if (password === confirmPassword) {
+      let userUid = await createUserWithEmailAndPassword(auth, email, password)
+        .then((userCred) => {
+          const { user } = userCred;
+          return user.uid;
+        })
+        .catch((err) => console.log(err.code, err.line));
+      await updateProfile(auth.currentUser, { displayName: username });
+      // await setDoc(doc(db, "Users", userUid), { username: username });
+      navigate("/");
+      console.log("created");
+    } else {
+      setErrMsg("Password and Confirm Password do not match");
+    }
   };
+
   return (
     <>
       <Wrapper image={image}>
