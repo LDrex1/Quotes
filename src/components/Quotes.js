@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { onAuthStateChanged } from "@firebase/auth";
 import { collection, onSnapshot, getDocs, setDoc } from "@firebase/firestore";
 import { auth, db } from "../firebase-config";
 import { useTheme } from "./ThemeProvider";
+import Likes from "./Likes";
 
 function Quotes() {
   const [quotesData, setQuotesData] = useState([]);
@@ -11,24 +11,10 @@ function Quotes() {
 
   const getQuotes = async () => {
     const collectionquerry = collection(db, "Quotes");
-    const snapshot = onSnapshot(collectionquerry, (snapshot) => {
+    onSnapshot(collectionquerry, (snapshot) => {
       setQuotesData(snapshot.docs);
     });
   };
-
-  const likeHandler = () => {
-    (async () => {
-      const { uid } = auth.currentUser;
-      const query1 = collection(db, "Users");
-      const usernameDocs = (await getDocs(query1)).docs;
-      let result = usernameDocs.filter((element) => element.id === uid);
-      const { username } = result[0].data();
-      console.log(username);
-      const query2 = collection(db, "Quotes");
-    })();
-  };
-
-  //   likeHandler();
 
   useEffect(() => {
     getQuotes();
@@ -37,7 +23,7 @@ function Quotes() {
   return (
     <>
       {quotesData.map((quoteData, index) => {
-        const { date, quote, username, time } = quoteData.data();
+        const { id, date, quote, username, time, likes } = quoteData.data();
 
         return (
           <QuotesDiv className="mb-1" theme={theme}>
@@ -47,7 +33,7 @@ function Quotes() {
             <P>
               <q>{quote}</q>
             </P>
-            <Like>like</Like>
+            <Likes id={id} likes={likes} />
             <H5>{username}</H5>
           </QuotesDiv>
         );
@@ -72,11 +58,6 @@ const QuotesDiv = styled.div`
 
 const P = styled.div`
   padding: 4px 5px;
-`;
-
-const Like = styled.div`
-  position: absolute;
-  bottom: 2px;
 `;
 
 const H5 = styled.h5`
