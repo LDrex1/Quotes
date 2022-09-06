@@ -40,11 +40,10 @@ function AuthForm(props) {
   return (
     <>
       <Logo />
-      <Form onTouchStart={handleActive} onSubmit={onSubmit} formType={formType}>
+      <Form onClick={handleActive} onSubmit={onSubmit} formType={formType}>
         <InputGroup>
           <InputDiv style={props.usernameInputDisplay}>
             <Input
-              // onFocus={handleActive}
               onChange={handleChange}
               name="username"
               type={"text"}
@@ -56,7 +55,6 @@ function AuthForm(props) {
           </InputDiv>
           <InputDiv className="">
             <Input
-              // onFocus={handleActive}
               onChange={handleChange}
               name="email"
               type={"email"}
@@ -70,10 +68,8 @@ function AuthForm(props) {
             className="input-div"
             title="Password should contain 6-10 characters including a number, and a capital letter"
             passwordActive={activeElement}
-            // passwordFoc={passwordFoc}
           >
             <Input
-              // onFocus={handleActive}
               ref={passwordRef}
               onChange={handleChange}
               name="password"
@@ -89,7 +85,6 @@ function AuthForm(props) {
           </InputDiv>
           <InputDiv style={props.confirmPasswordInputDisplay}>
             <Input
-              // onFocus={handleActive}
               onChange={handleChange}
               name="confirmPassword"
               type={"password"}
