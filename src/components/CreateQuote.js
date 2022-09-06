@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useRef } from "react";
 import styled from "styled-components";
 import { Timestamp, doc, setDoc, getDoc } from "@firebase/firestore";
+import { v4 as uuidv4 } from "uuid";
 import { auth, db } from "../firebase-config";
 import calender from "./Calender";
 
@@ -18,29 +19,27 @@ function CreateQuote() {
     });
   };
 
-  const createQuoteHandler = () => {
-    (async () => {
-      const user = auth.currentUser;
-      console.log("started");
-      if (user !== null) {
-        const { minutesPad, hoursPad, date, month, year } = calender();
-        const { uid } = user;
-        const quote = quoteInput.current.value;
-        const userSnapshot = await getDoc(doc(db, "Users", uid));
-        const { username } = userSnapshot.data();
-        await setDoc(doc(db, "Quotes", uid), {
-          time: `${hoursPad}:${minutesPad}`,
-          date: `${date}/${month.slice(0, 3)}/${year}`,
-          quote: quote,
-          username: username,
-          likes: [],
-          createdAt: Timestamp.now().toDate(),
-        });
-        openCreateInputHandler();
-        quoteInput.current.value = null;
-        console.log("done");
-      }
-    })();
+  const createQuoteHandler = async () => {
+    const user = auth.currentUser;
+    console.log("started");
+    if (user !== null) {
+      const { minutesPad, hoursPad, date, month, year } = calender();
+      const { uid } = user;
+      const quote = quoteInput.current.value;
+      const username = user.displayName;
+      await setDoc(doc(db, "Quotes", uid), {
+        id: uuidv4(),
+        time: `${hoursPad}:${minutesPad}`,
+        date: `${date}/${month.slice(0, 3)}/${year}`,
+        quote: quote,
+        username: username,
+        likes: [],
+        createdAt: Timestamp.now().toDate(),
+      });
+      openCreateInputHandler();
+      quoteInput.current.value = null;
+      console.log("done");
+    }
   };
 
   return (
