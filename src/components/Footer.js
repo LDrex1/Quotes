@@ -11,7 +11,7 @@ function FooterG() {
         </Div>
         <Div className="text-center">
           <span className="fw-500">Created by </span>
-          <a href="" className="fw-600">
+          <a href="https://github.com/LDrex1" className="fw-600">
             Ldrex1
           </a>
         </Div>
