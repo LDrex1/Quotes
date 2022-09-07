@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { collection, onSnapshot, getDocs, setDoc } from "@firebase/firestore";
-import { auth, db } from "../firebase-config";
+import { collection, onSnapshot } from "@firebase/firestore";
+import { db } from "../firebase-config";
 import { useTheme } from "./ThemeProvider";
 import Likes from "./Likes";
 
@@ -45,11 +45,11 @@ function Quotes() {
 export default Quotes;
 
 const QuotesDiv = styled.div`
-  border: 1px solid red;
-  background: ${(props) => (props.theme === true ? "#f4f7f5" : "#232723")};
+  border: 1px solid ${(props) => (props.theme === true ? "#2222" : "#5c5c5c")};
+  border-radius: 3px;
+  background: ${(props) => (props.theme === true ? "#f0f2f5" : "#30332e")};
   width: 80%;
   padding: 8px;
-  //   height: 58px;
   max-height: 100px;
   margin-left: auto;
   margin-right: auto;
