@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useTheme } from "./ThemeProvider";
 import {
   collection,
   where,
@@ -13,6 +14,7 @@ import {
 import { auth, db } from "../firebase-config";
 
 function Likes({ id, likes }) {
+  const [theme] = useTheme();
   const user = auth.currentUser;
   const likeHandler = async () => {
     try {
@@ -32,7 +34,10 @@ function Likes({ id, likes }) {
   };
   return (
     <>
-      <Like onClick={likeHandler}>Likes {likes?.length}</Like>
+      <Like theme={theme} likes={likes} onClick={likeHandler}>
+        <i class="fa fa-thumbs-up"></i>{" "}
+        <span style={{ color: "green" }}>{likes?.length}</span>
+      </Like>
     </>
   );
 }
@@ -42,4 +47,13 @@ export default Likes;
 const Like = styled.div`
   position: absolute;
   bottom: 2px;
+
+  i {
+    font-size: 18px;
+    color: ${({ theme, likes }) =>
+      theme === true && !likes.length === true
+        ? "#222"
+        : !(theme === true) && !likes.length == true
+        ? "#cdcbcb"
+        : "red"}
 `;
