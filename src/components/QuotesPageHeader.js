@@ -28,9 +28,9 @@ function QuotesPageHeader() {
               Account<img src=""></img>
             </ImageDiv>
             <Ul className="dropdown-content" theme={theme}>
-              <Li>
+              {/* <Li>
                 <A>Edit profile</A>
-              </Li>
+              </Li> */}
               <Li>
                 <Button onClick={signOutHandler}>Log Out</Button>
               </Li>
