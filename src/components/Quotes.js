@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { collection, onSnapshot } from "@firebase/firestore";
+import { collection, query, orderBy, onSnapshot } from "@firebase/firestore";
 import { db } from "../firebase-config";
+import { calculateTimePassed } from "./Calender";
 import { useTheme } from "./ThemeProvider";
 import Likes from "./Likes";
 
@@ -10,7 +11,10 @@ function Quotes() {
   const [theme] = useTheme();
 
   const getQuotes = async () => {
-    const collectionquerry = collection(db, "Quotes");
+    const collectionquerry = query(
+      collection(db, "Quotes"),
+      orderBy("createdAt", "desc")
+    );
     onSnapshot(collectionquerry, (snapshot) => {
       setQuotesData(snapshot.docs);
     });
@@ -23,13 +27,14 @@ function Quotes() {
   return (
     <>
       {quotesData.map((quoteData, index) => {
-        const { id, date, quote, username, time, likes } = quoteData.data();
+        const { id, date, quote, username, likes, createdAt } =
+          quoteData.data();
+        // console.log(new Date(quoteData.data().createdAt * 1000).getTime());
+        const timePosted = calculateTimePassed(createdAt);
 
         return (
           <QuotesDiv className="mb-1" theme={theme}>
-            <H6>
-              {date} {time}
-            </H6>
+            <H6>{timePosted}</H6>
             <P>
               <q>{quote}</q>
             </P>
