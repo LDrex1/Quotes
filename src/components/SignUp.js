@@ -7,6 +7,7 @@ import { doc, setDoc } from "@firebase/firestore";
 import { auth, db } from "./../firebase-config";
 import AuthForm from "./AuthForm";
 import backgroundImages from "./BackgroundImages";
+import FooterG from "./Footer";
 
 function SignUp() {
   const [errMsg, setErrMsg] = useState("");
@@ -69,6 +70,7 @@ function SignUp() {
           updateFormValues={updateFormValues}
           errMsg={errMsg}
         />
+        <FooterG />
       </Wrapper>
     </>
   );
