@@ -6,6 +6,7 @@ import { signInWithEmailAndPassword } from "@firebase/auth";
 import { auth } from "./../firebase-config";
 import AuthForm from "./AuthForm";
 import backgroundImages from "./BackgroundImages";
+import FooterG from "./Footer";
 
 // const SignedInContext = React.createContext();
 function SignIn() {
@@ -66,6 +67,7 @@ function SignIn() {
         updateFormValues={updateFormValues}
         errMsg={errMsg}
       />
+      <FooterG />
     </Wrapper>
   );
 }
@@ -83,4 +85,5 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   transition: background ease-out 1100ms;
+  -webkit-transition: background ease-out 1100ms;
 `;
