@@ -34,8 +34,12 @@ function Likes({ id, likes }) {
   };
   return (
     <>
-      <Like theme={theme} likes={likes} onClick={likeHandler}>
-        <i class="fa fa-thumbs-up"></i>{" "}
+      <Like theme={theme} likes={likes}>
+        <i
+          onClick={likeHandler}
+          style={{ cursor: "pointer" }}
+          class="fa fa-thumbs-up"
+        ></i>{" "}
         <span style={{ color: "green" }}>{likes?.length}</span>
       </Like>
     </>
