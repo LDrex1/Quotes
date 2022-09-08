@@ -22,6 +22,35 @@ export const calenderDays = [
   "Saturday",
 ];
 
+export function calculateTimePassed(timeStamp) {
+  const date = new Date();
+  const timeStampMillSec = timeStamp.seconds * 1000;
+  const dateCreated = new Date(timeStampMillSec);
+  const timeDifference = (date.getTime() - dateCreated.getTime()) / 60000;
+  // console.log(timeDifference);
+  if (timeDifference > 0 && timeDifference < 60) {
+    return `Posted ${~~timeDifference} mins ago`;
+  }
+  if (timeDifference > 60 && timeDifference < 1440) {
+    return `Posted ${~~(timeDifference / 60)} hours ago`;
+  }
+  if (timeDifference > 1440 && timeDifference < 10080) {
+    return `Posted ${~~(timeDifference / (60 * 24))} ${
+      timeDifference / (60 * 24) < 2 ? "day" : "days"
+    } ago`;
+  }
+  if (timeDifference > 10080 && timeDifference < 40320) {
+    return `Posted ${timeDifference / (60 * 24 * 7)} weeks ago`;
+  }
+  if (timeDifference > 40320 && timeDifference < 483840) {
+    return `Posted ${~~(timeDifference / 483840)} years ago`;
+  } else {
+    return `Posted just now`;
+  }
+
+  // console.log(timeDifference / 60000);
+}
+
 function Calender() {
   const date = new Date();
   const calDate = date.getDate();
