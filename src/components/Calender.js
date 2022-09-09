@@ -29,10 +29,14 @@ export function calculateTimePassed(timeStamp) {
   const timeDifference = (date.getTime() - dateCreated.getTime()) / 60000;
   // console.log(timeDifference);
   if (timeDifference > 0 && timeDifference < 60) {
-    return `Posted ${~~timeDifference} mins ago`;
+    return `Posted ${~~timeDifference} ${
+      timeDifference < 2 ? "min" : "mins"
+    } ago`;
   }
   if (timeDifference > 60 && timeDifference < 1440) {
-    return `Posted ${~~(timeDifference / 60)} hours ago`;
+    return `Posted ${~~(timeDifference / 60)} ${
+      timeDifference / 60 < 2 ? "hour" : "hours"
+    } ago`;
   }
   if (timeDifference > 1440 && timeDifference < 10080) {
     return `Posted ${~~(timeDifference / (60 * 24))} ${
@@ -40,10 +44,14 @@ export function calculateTimePassed(timeStamp) {
     } ago`;
   }
   if (timeDifference > 10080 && timeDifference < 40320) {
-    return `Posted ${timeDifference / (60 * 24 * 7)} weeks ago`;
+    return `Posted ${timeDifference / (60 * 24 * 7)} ${
+      timeDifference / (60 * 24 * 7) < 2 ? "week" : "weeks"
+    } ago`;
   }
   if (timeDifference > 40320 && timeDifference < 483840) {
-    return `Posted ${~~(timeDifference / 483840)} years ago`;
+    return `Posted ${~~(timeDifference / 483840)} ${
+      timeDifference / 483840 < 2 ? "year" : "years"
+    } ago`;
   } else {
     return `Posted just now`;
   }
