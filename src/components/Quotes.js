@@ -34,8 +34,8 @@ function Quotes() {
 
         return (
           <QuotesDiv className="mb-1" theme={theme}>
-            <H6>{timePosted}</H6>
-            <P>
+            <H6 className="fw-400">{timePosted}</H6>
+            <P className="fw-600">
               <q>{quote}</q>
             </P>
             <Likes id={id} likes={likes} />
@@ -63,10 +63,13 @@ const QuotesDiv = styled.div`
 
 const P = styled.div`
   padding: 4px 5px;
+  font-family: "Cedarville Cursive", cursive;
+  letter-spacing: 0.03rem;
 `;
 
 const H5 = styled.h5`
   text-align: end;
+  opacity: 0.7;
 `;
 
 const H6 = styled.h6`
