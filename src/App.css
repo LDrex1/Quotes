@@ -4,6 +4,22 @@
   box-sizing: border-box;
 }
 
+body {
+  font-family: "Montserrat", sans-serif;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2.3rem;
+}
+
+p {
+  font-size: 1.1rem;
+}
+
 input,
 textarea {
   outline: none;
@@ -103,6 +119,18 @@ a:hover {
 }
 
 @media screen and (min-width: 992px) {
+  h1 {
+    font-size: 3.6rem;
+  }
+
+  h2 {
+    font-size: 3.2rem;
+  }
+
+  p {
+    font-size: 1.2rem;
+  }
+
   input {
     font-size: 19px;
   }
