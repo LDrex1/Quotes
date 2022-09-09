@@ -12,6 +12,7 @@ import {
   arrayUnion,
 } from "@firebase/firestore";
 import { auth, db } from "../firebase-config";
+import device from "./Devices";
 
 function Likes({ id, likes }) {
   const [theme] = useTheme();
@@ -35,11 +36,7 @@ function Likes({ id, likes }) {
   return (
     <>
       <Like theme={theme} likes={likes}>
-        <i
-          onClick={likeHandler}
-          style={{ cursor: "pointer" }}
-          class="fa fa-thumbs-up"
-        ></i>{" "}
+        <i onClick={likeHandler} class="fa fa-thumbs-up"></i>{" "}
         <span style={{ color: "green" }}>{likes?.length}</span>
       </Like>
     </>
@@ -49,15 +46,20 @@ function Likes({ id, likes }) {
 export default Likes;
 
 const Like = styled.div`
-  position: absolute;
-  bottom: 2px;
+  //   position: absolute;
+  //   bottom: 2px;
 
   i {
-    font-size: 18px;
+    font-size: 24px;
+    cursor: "pointer";
     color: ${({ theme, likes }) =>
       theme === true && !likes.length === true
         ? "#222"
         : !(theme === true) && !likes.length == true
         ? "#cdcbcb"
-        : "red"}
+        : "skyblue"};
+    @media ${device.mobileL} {
+      font-size: 26px;
+    }
+  }
 `;
