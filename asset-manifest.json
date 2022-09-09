@@ -1,22 +1,27 @@
 {
   "files": {
-    "main.css": "/Quotes/static/css/main.30f7aaf5.css",
-    "main.js": "/Quotes/static/js/main.b91ad087.js",
+    "main.css": "/Quotes/static/css/main.7ff26411.css",
+    "main.js": "/Quotes/static/js/main.644322d3.js",
     "static/js/787.43cbfe13.chunk.js": "/Quotes/static/js/787.43cbfe13.chunk.js",
     "static/media/image-sign-up-4.jpg": "/Quotes/static/media/image-sign-up-4.e9ca96e058ee537e2795.jpg",
     "static/media/image_1.jpg": "/Quotes/static/media/image_1.0d0aaaaacb23e45f177f.jpg",
-    "static/media/image-sign-up-3.jpg": "/Quotes/static/media/image-sign-up-3.3f36a322a394d41a7199.jpg",
-    "static/media/image-sign-up-2.jpg": "/Quotes/static/media/image-sign-up-2.ca5d8e5019bcdcb4138e.jpg",
-    "static/media/image-sign-up-1.jpg": "/Quotes/static/media/image-sign-up-1.b90063cc2e5f59856535.jpg",
+    "static/media/fontawesome-webfont.svg?v=4.7.0": "/Quotes/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
     "static/media/image_4.jpg": "/Quotes/static/media/image_4.3c904abaf5ebdb0c21e8.jpg",
+    "static/media/image-sign-up-3.jpg": "/Quotes/static/media/image-sign-up-3.e28588344691e97c1a4a.jpg",
+    "static/media/image-sign-up-1.jpg": "/Quotes/static/media/image-sign-up-1.f7b0ecfdf3735a9c2c56.jpg",
+    "static/media/fontawesome-webfont.eot": "/Quotes/static/media/fontawesome-webfont.8b43027f47b20503057d.eot",
+    "static/media/fontawesome-webfont.ttf?v=4.7.0": "/Quotes/static/media/fontawesome-webfont.1e59d2330b4c6deb84b3.ttf",
+    "static/media/image-sign-up-2.jpg": "/Quotes/static/media/image-sign-up-2.a2febe1adf4c613c9378.jpg",
+    "static/media/fontawesome-webfont.woff?v=4.7.0": "/Quotes/static/media/fontawesome-webfont.f691f37e57f04c152e23.woff",
+    "static/media/fontawesome-webfont.woff2?v=4.7.0": "/Quotes/static/media/fontawesome-webfont.20fd1704ea223900efa9.woff2",
     "static/media/plato.jpg": "/Quotes/static/media/plato.93793b35a43e49312875.jpg",
     "index.html": "/Quotes/index.html",
-    "main.30f7aaf5.css.map": "/Quotes/static/css/main.30f7aaf5.css.map",
-    "main.b91ad087.js.map": "/Quotes/static/js/main.b91ad087.js.map",
+    "main.7ff26411.css.map": "/Quotes/static/css/main.7ff26411.css.map",
+    "main.644322d3.js.map": "/Quotes/static/js/main.644322d3.js.map",
     "787.43cbfe13.chunk.js.map": "/Quotes/static/js/787.43cbfe13.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.30f7aaf5.css",
-    "static/js/main.b91ad087.js"
+    "static/css/main.7ff26411.css",
+    "static/js/main.644322d3.js"
   ]
 }
