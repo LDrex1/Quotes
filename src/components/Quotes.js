@@ -5,6 +5,7 @@ import { db } from "../firebase-config";
 import { calculateTimePassed } from "./Calender";
 import { useTheme } from "./ThemeProvider";
 import Likes from "./Likes";
+import device from "./Devices";
 
 function Quotes() {
   const [quotesData, setQuotesData] = useState([]);
@@ -34,12 +35,20 @@ function Quotes() {
 
         return (
           <QuotesDiv className="mb-1" theme={theme}>
-            <H6 className="fw-400">{timePosted}</H6>
+            <H5>{username}</H5>
             <P className="fw-600">
               <q>{quote}</q>
             </P>
-            <Likes id={id} likes={likes} />
-            <H5>{username}</H5>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <Likes id={id} likes={likes} />
+              <H6 className="fw-400">{timePosted}</H6>
+            </div>
           </QuotesDiv>
         );
       })}
@@ -55,25 +64,36 @@ const QuotesDiv = styled.div`
   background: ${(props) => (props.theme === true ? "#f0f2f5" : "#30332e")};
   width: 80%;
   padding: 8px;
+  padding-top: 2px;
   max-height: 100px;
   margin-left: auto;
   margin-right: auto;
   position: relative;
+  overflow-y: scroll;
+  overflow-x: hidden;
 `;
 
 const P = styled.div`
+  hyphens: auto;
   padding: 4px 5px;
+  margin-top: -10px;
   font-family: "Cedarville Cursive", cursive;
   letter-spacing: 0.03rem;
+
+  q {
+    @media ${device.mobileL} {
+      font-size: 1.3rem;
+    }
+  }
 `;
 
 const H5 = styled.h5`
+  position: sticky;
   text-align: end;
+  top: 0px;
   opacity: 0.7;
 `;
 
 const H6 = styled.h6`
-  position: absolute;
-  top: 2px;
-  right: 8px;
+  top: 0px;
 `;
