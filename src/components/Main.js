@@ -14,4 +14,6 @@ function Main() {
 
 export default Main;
 
-const Container = styled.div``;
+const Container = styled.div`
+  overflow-y: scroll;
+`;
