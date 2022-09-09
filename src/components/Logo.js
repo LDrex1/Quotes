@@ -16,6 +16,7 @@ const H2 = styled.h2`
     #99ff66 60%,
     #009933 100%
   );
+  font-family: "Noto Serif", serif;
   color: transparent;
   position: absolute;
   top: 8px;
