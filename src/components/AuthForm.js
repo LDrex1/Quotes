@@ -173,7 +173,7 @@ const Form = styled.form`
   flex-direction: column;
   justify-content: center;
   row-gap: ${(props) => (props.formType ? "25px" : "18px")};
-  // position relative;
+  position relative;
 
   &:before {
     content: "";
@@ -211,10 +211,6 @@ const InputDiv = styled.div`
     color: grey;
     transform: translatey(-50%);
     font-size: 20px;
-
-    @media ${device.mobileL} {
-      right: 21%;
-    }
   }
   &.input-div::after {
     display: ${(props) => (props.passwordActive ? "block" : "none")};
