@@ -8,7 +8,6 @@ import AuthForm from "./AuthForm";
 import backgroundImages from "./BackgroundImages";
 import FooterG from "./Footer";
 
-// const SignedInContext = React.createContext();
 function SignIn() {
   const [errMsg, setErrMsg] = useState("");
   const navigate = useNavigate();
@@ -84,7 +83,7 @@ const Wrapper = styled.div`
   width: 100%;
   padding-top: 80px;
   padding-bottom: 50px;
-  min-height: 90vh;
+  min-height: 92vh;
   display: flex;
   justify-content: center;
   align-items: center;
