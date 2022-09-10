@@ -214,6 +214,7 @@ const InputDiv = styled.div`
   }
   &.input-div::after {
     display: ${(props) => (props.passwordActive ? "block" : "none")};
+    z-index: 2;
   }
 `;
 
