@@ -10,21 +10,29 @@ function AuthForm(props) {
   const { formType, formValues, updateFormValues, firstButtonHandler, errMsg } =
     props;
   const passwordRef = useRef();
+  console.log(props.congrats);
   const [activeElement, setActiveElement] = useState(false);
+  const [isValidPassword, setIsValidPassword] = useState(true);
 
   const handleActive = () => {
     setActiveElement(passwordRef.current === document.activeElement);
-    console.log(passwordRef.current);
-    console.log(document.activeElement, "active");
+    setTimeout(() => {
+      setActiveElement(false);
+    }, 5000);
   };
 
   const handleChange = (ev) => {
     const { value, name } = ev.target;
     updateFormValues({ ...formValues, [name]: value });
+    ev.target.name === "password" &&
+      ev.target.checkValidity() &&
+      setIsValidPassword(true);
+    ev.target.name === "password" &&
+      !ev.target.checkValidity() &&
+      setIsValidPassword(false);
   };
 
   const { username, email, password, confirmPassword } = formValues;
-  console.log(email, password);
   const usernamePattern = "\\b[a-zA-Z_][a-z_]+\\d*\\b|\\b[a-zA-Z_]\\d\\d+\b";
   const passwordPattern =
     "(?=^.{6,10}$)(=?.*[A-Z])(=?.*\\d*)\\w*|(?=^.{6,10}$)(=?.*\\d*)(=?.*[A-Z])\\w*";
@@ -33,13 +41,15 @@ function AuthForm(props) {
     if (ev.target.checkValidity()) {
       ev.preventDefault();
       firstButtonHandler();
-      console.log("very valid");
     }
   };
 
   return (
     <>
       <Logo />
+      <H3 congrats={props.congrats}>
+        Congratulations, Sign up Complete...Please sign In
+      </H3>
       <Form onClick={handleActive} onSubmit={onSubmit} formType={formType}>
         <InputGroup>
           <InputDiv style={props.usernameInputDisplay}>
@@ -70,6 +80,7 @@ function AuthForm(props) {
             passwordActive={activeElement}
           >
             <Input
+              className="password"
               ref={passwordRef}
               onChange={handleChange}
               name="password"
@@ -80,6 +91,7 @@ function AuthForm(props) {
               placeholder={"Password"}
               pattern={passwordPattern}
               value={password}
+              valid={isValidPassword}
               required
             ></Input>
           </InputDiv>
@@ -97,7 +109,7 @@ function AuthForm(props) {
         <P errMsg={errMsg} className="text-center fw-500">
           {errMsg}
         </P>
-        <Div>
+        <Div className="fw-600">
           {formType === "sign-in" ? (
             <p className="text-center">
               New to the quotes app? click <Link to={"/sign-up"}>here</Link> to
@@ -172,11 +184,18 @@ const InputDiv = styled.div`
 
 const Input = styled.input`
   width: 80%;
+  font-size: 17px;
+  &.password {
+    border-color: ${({ valid }) => (valid === true ? "#00cc00" : "red")};
+    &:focus {
+      box-shadow: 0.4px 0px 1.2px 1px
+        ${({ valid }) => (valid === true ? "#00ff00" : "crimson")};
+    }
+  }
   &:focus {
     border: 3px #144f7c;
     box-shadow: 0.4px 0px 1.2px 1px #00ff00;
   }
-  font-size: 17px;
   @media ${device.mobileL} {
     font-size: 18px;
     &:focus {
@@ -233,4 +252,15 @@ const Button = styled.button`
         height: 80%;
       }
   }
+`;
+
+const H3 = styled.h3`
+  color: #00ff00;
+  width: fit-content;
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translatex(-50%);
+  opacity: ${({ congrats }) => (congrats ? "1" : "0")};
+  transition: opacity ease-out 600ms;
 `;
