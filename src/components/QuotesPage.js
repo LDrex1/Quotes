@@ -9,21 +9,23 @@ function QuotesPage() {
   const [theme, toggleTheme] = useTheme();
 
   return (
-    <Wrapper theme={theme}>
-      <Button className="theme-toggler" onClick={toggleTheme} theme={theme}>
-        {theme ? "DarkMode" : "LightMode"}
-      </Button>
-      <QuotesPageHeader />
-      <Main />
+    <>
+      <Wrapper theme={theme}>
+        <Button className="theme-toggler" onClick={toggleTheme} theme={theme}>
+          {theme ? "DarkMode" : "LightMode"}
+        </Button>
+        <QuotesPageHeader />
+        <Main />
+      </Wrapper>
       <FooterG />
-    </Wrapper>
+    </>
   );
 }
 
 export default QuotesPage;
 
 const Wrapper = styled.div`
-  min-height: 100vh;
+  min-height: 90vh;
   position: relative;
   background: ${(props) => (props.theme === true ? "#ffffff" : "#222222")};
   color: ${(props) => (props.theme === true ? "black" : "whitesmoke")};
@@ -38,8 +40,10 @@ const Button = styled.button`
     background: ${(props) => (!(props.theme === true) ? "#ffffff" : "#222222")};
     color: ${(props) => (!(props.theme === true) ? "black" : "whitesmoke")};
     position: absolute;
-    bottom: 90px;
+    bottom: 18%;
     right: 5%;
     width: fit-content;
+    opacity: 0.6;
+    z-index: 2;
   }
 `;
