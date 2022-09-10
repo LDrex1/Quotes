@@ -53,22 +53,24 @@ function SignIn() {
   const notRequired = false;
 
   return (
-    <Wrapper image={image}>
-      <AuthForm
-        formType={"sign-in"}
-        usernameInputDisplay={noDisplay}
-        usernameRequired={notRequired}
-        confirmPasswordInputDisplay={noDisplay}
-        confirmPasswordRequired={notRequired}
-        firstButton={"Sign In"}
-        firstButtonHandler={signInHandler}
-        secondButton={"Sign In with Google"}
-        formValues={formValues}
-        updateFormValues={updateFormValues}
-        errMsg={errMsg}
-      />
+    <>
+      <Wrapper image={image}>
+        <AuthForm
+          formType={"sign-in"}
+          usernameInputDisplay={noDisplay}
+          usernameRequired={notRequired}
+          confirmPasswordInputDisplay={noDisplay}
+          confirmPasswordRequired={notRequired}
+          firstButton={"Sign In"}
+          firstButtonHandler={signInHandler}
+          secondButton={"Sign In with Google"}
+          formValues={formValues}
+          updateFormValues={updateFormValues}
+          errMsg={errMsg}
+        />
+      </Wrapper>
       <FooterG />
-    </Wrapper>
+    </>
   );
 }
 
@@ -80,7 +82,9 @@ const Wrapper = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   width: 100%;
-  min-height: 100vh;
+  padding-top: 80px;
+  padding-bottom: 50px;
+  min-height: 90vh;
   display: flex;
   justify-content: center;
   align-items: center;
