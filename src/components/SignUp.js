@@ -52,7 +52,7 @@ function SignUp() {
       setTimeout(() => {
         setCongrats(false);
         navigate("/");
-      }, 4000);
+      }, 3500);
       console.log("showh3");
       console.log("created");
     } else {
