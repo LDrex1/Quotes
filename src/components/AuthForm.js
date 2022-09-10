@@ -1,4 +1,3 @@
-import { async } from "@firebase/util";
 import React from "react";
 import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -10,15 +9,25 @@ function AuthForm(props) {
   const { formType, formValues, updateFormValues, firstButtonHandler, errMsg } =
     props;
   const passwordRef = useRef();
-  console.log(props.congrats);
   const [activeElement, setActiveElement] = useState(false);
   const [isValidPassword, setIsValidPassword] = useState(true);
+  const [passwordVisibility, setPasswordVisibility] = useState({
+    password: "password",
+    confirmPassword: "password",
+  });
+
+  useEffect(() => {
+    const time = setTimeout(() => {
+      setActiveElement(false);
+    }, 5000);
+
+    return () => {
+      clearTimeout(time);
+    };
+  }, [activeElement]);
 
   const handleActive = () => {
     setActiveElement(passwordRef.current === document.activeElement);
-    setTimeout(() => {
-      setActiveElement(false);
-    }, 5000);
   };
 
   const handleChange = (ev) => {
@@ -42,6 +51,14 @@ function AuthForm(props) {
       ev.preventDefault();
       firstButtonHandler();
     }
+  };
+
+  const handlepasswordVisibility = (name) => {
+    console.log(passwordVisibility);
+    setPasswordVisibility({
+      ...passwordVisibility,
+      [name]: passwordVisibility[name] === "text" ? "password" : "text",
+    });
   };
 
   return (
@@ -84,7 +101,7 @@ function AuthForm(props) {
               ref={passwordRef}
               onChange={handleChange}
               name="password"
-              type={"password"}
+              type={passwordVisibility.password}
               title={
                 "Password should contain 6-10 characters including a number, and a capital letter"
               }
@@ -94,16 +111,24 @@ function AuthForm(props) {
               valid={isValidPassword}
               required
             ></Input>
+            <i
+              onClick={() => handlepasswordVisibility("password")}
+              class="fa fa-eye-slash"
+            ></i>
           </InputDiv>
           <InputDiv style={props.confirmPasswordInputDisplay}>
             <Input
               onChange={handleChange}
               name="confirmPassword"
-              type={"password"}
+              type={passwordVisibility.confirmPassword}
               placeholder={"Confirm password"}
               value={confirmPassword}
               required={props.confirmPasswordRequired}
             ></Input>
+            <i
+              onClick={() => handlepasswordVisibility("confirmPassword")}
+              class="fa fa-eye-slash"
+            ></i>
           </InputDiv>
         </InputGroup>
         <P errMsg={errMsg} className="text-center fw-500">
@@ -142,13 +167,13 @@ const Form = styled.form`
   border-radius: 8px;
   padding-top: 50px;
   padding-bottom: 10px;
-  background: rgb(217, 217, 217,0.5);
+  background: rgb(217, 217, 217, 0.5);
   width: 90%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   row-gap: ${(props) => (props.formType ? "25px" : "18px")};
-  position relative;
+  // position relative;
 
   &:before {
     content: "";
@@ -176,15 +201,31 @@ const InputGroup = styled.div`
 
 const InputDiv = styled.div`
   text-align: center;
+  position: relative;
+  width: 80%;
+  margin: auto;
+  i {
+    position: absolute;
+    right: 1%;
+    top: 50%;
+    color: grey;
+    transform: translatey(-50%);
+    font-size: 20px;
 
+    @media ${device.mobileL} {
+      right: 21%;
+    }
+  }
   &.input-div::after {
     display: ${(props) => (props.passwordActive ? "block" : "none")};
   }
 `;
 
 const Input = styled.input`
-  width: 80%;
+  width: 100%;
   font-size: 17px;
+  position: relative;
+
   &.password {
     border-color: ${({ valid }) => (valid === true ? "#00cc00" : "red")};
     &:focus {
