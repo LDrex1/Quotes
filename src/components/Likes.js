@@ -25,7 +25,7 @@ function Likes({ id, likes }) {
       updateDoc(likesref, {
         likes: likes?.includes(user.displayName)
           ? arrayRemove(user.displayName)
-          : arrayUnion(user.uid),
+          : arrayUnion(user.displayName),
       })
         .then(console.log("first"))
         .catch((err) => console.log(err.message));
