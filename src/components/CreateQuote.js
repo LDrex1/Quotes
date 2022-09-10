@@ -60,9 +60,10 @@ export default CreateQuote;
 const Container = styled.div`
   & p {
     position: fixed;
-    bottom: 100px;
+    bottom: 25%;
     left: 25px;
     opacity: 0.6;
+    z-index: 2;
 
     &:hover {
       opacity: 1;
