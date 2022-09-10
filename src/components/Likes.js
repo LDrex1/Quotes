@@ -23,8 +23,8 @@ function Likes({ id, likes }) {
       const docId = await getDocs(quoteQuery).then((resp) => resp.docs[0].id);
       const likesref = doc(db, "Quotes", docId);
       updateDoc(likesref, {
-        likes: likes?.includes(user.uid)
-          ? arrayRemove(user.uid)
+        likes: likes?.includes(user.displayName)
+          ? arrayRemove(user.displayName)
           : arrayUnion(user.uid),
       })
         .then(console.log("first"))
