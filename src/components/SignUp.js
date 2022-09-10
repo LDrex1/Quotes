@@ -3,14 +3,15 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { createUserWithEmailAndPassword, updateProfile } from "@firebase/auth";
-import { doc, setDoc } from "@firebase/firestore";
-import { auth, db } from "./../firebase-config";
+import { auth } from "./../firebase-config";
 import AuthForm from "./AuthForm";
 import backgroundImages from "./BackgroundImages";
 import FooterG from "./Footer";
 
+const SignUpContext = React.createContext();
 function SignUp() {
   const [errMsg, setErrMsg] = useState("");
+  const [congrats, setCongrats] = useState(false);
   const { signUp: signUpBackgrounds } = backgroundImages;
   const [formValues, updateFormValues] = useState({});
   const { username, email, password, confirmPassword } = formValues;
@@ -18,7 +19,6 @@ function SignUp() {
   const confirmPasswordInputDisplay = {};
 
   const navigate = useNavigate();
-
   const [image, setImage] = useState(signUpBackgrounds[0]);
   let backgroundsLength = signUpBackgrounds.length;
 
@@ -48,8 +48,12 @@ function SignUp() {
         })
         .catch((err) => console.log(err.code, err.line));
       await updateProfile(auth.currentUser, { displayName: username });
-      // await setDoc(doc(db, "Users", userUid), { username: username });
-      navigate("/");
+      setCongrats(true);
+      setTimeout(() => {
+        setCongrats(false);
+        navigate("/");
+      }, 4000);
+      console.log("showh3");
       console.log("created");
     } else {
       setErrMsg("Password and Confirm Password do not match");
@@ -69,9 +73,10 @@ function SignUp() {
           formValues={formValues}
           updateFormValues={updateFormValues}
           errMsg={errMsg}
+          congrats={congrats}
         />
-        <FooterG />
       </Wrapper>
+      <FooterG />
     </>
   );
 }
@@ -84,7 +89,9 @@ const Wrapper = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   width: 100%;
-  min-height: 100vh;
+  padding-top: 80px;
+  padding-bottom: 50px;
+  min-height: 90vh;
   display: flex;
   justify-content: center;
   align-items: center;
