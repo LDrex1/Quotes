@@ -32,6 +32,10 @@ textarea {
   font-size: 17px;
 }
 
+input::-ms-reveal {
+  display: none;
+}
+
 button {
   background: rgb(0, 230, 0, 0.4);
   border-radius: 3px;
