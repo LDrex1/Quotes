@@ -6,6 +6,7 @@
 
 body {
   font-family: "Montserrat", sans-serif;
+  position: relative;
 }
 
 h1 {
@@ -37,6 +38,7 @@ button {
   padding: 8px 8px;
   border: none;
   color: inherit;
+  font-size: 1rem;
 }
 
 ul {
