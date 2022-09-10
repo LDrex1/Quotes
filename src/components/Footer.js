@@ -24,8 +24,9 @@ const Footer = styled.footer`
   background: #333a33;
   padding: 15px 0 9px;
   width: 100%;
-  bottom: 0;
-  top: auto;
+  min-height: 8vh;
+  // bottom: 0;
+  // top: auto;
 `;
 
 const Div = styled.div`
