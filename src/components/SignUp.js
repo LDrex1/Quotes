@@ -91,7 +91,7 @@ const Wrapper = styled.div`
   width: 100%;
   padding-top: 80px;
   padding-bottom: 50px;
-  min-height: 90vh;
+  min-height: 92vh;
   display: flex;
   justify-content: center;
   align-items: center;
