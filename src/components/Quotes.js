@@ -62,7 +62,7 @@ const QuotesDiv = styled.div`
   border: 1px solid ${(props) => (props.theme === true ? "#2222" : "#5c5c5c")};
   border-radius: 3px;
   background: ${(props) => (props.theme === true ? "#f0f2f5" : "#30332e")};
-  width: 80%;
+  width: 90%;
   padding: 8px;
   padding-top: 2px;
   max-height: 100px;
@@ -71,6 +71,10 @@ const QuotesDiv = styled.div`
   position: relative;
   overflow-y: scroll;
   overflow-x: hidden;
+
+  @media ${device.mobileL} {
+    width: 80%;
+  }
 `;
 
 const P = styled.div`
