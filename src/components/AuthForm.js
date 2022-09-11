@@ -42,7 +42,7 @@ function AuthForm(props) {
   };
 
   const { username, email, password, confirmPassword } = formValues;
-  const usernamePattern = "\\b[a-zA-Z_][a-zA-Z_]+\\d*\\b|\\b[a-zA-Z_]\\d\\d+\b";
+  const usernamePattern = "\\b[a-zA-Z_][a-zA-Z_]+\\d*\\b|\\b[a-zA-Z_]\\d\\w*\b";
   const passwordPattern =
     "(?=^.{6,10}$)(=?.*[A-Z])(=?.*\\d*)\\w*|(?=^.{6,10}$)(=?.*\\d*)(=?.*[A-Z])\\w*";
 
@@ -76,6 +76,9 @@ function AuthForm(props) {
               type={"text"}
               pattern={usernamePattern}
               placeholder={"Username"}
+              title={
+                "Username should not start with a number and contain at least 2 alphanumeric characters"
+              }
               required={props.usernameRequired}
               value={username}
             ></Input>
