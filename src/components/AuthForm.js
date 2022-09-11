@@ -42,7 +42,7 @@ function AuthForm(props) {
   };
 
   const { username, email, password, confirmPassword } = formValues;
-  const usernamePattern = "\\b[a-zA-Z_][a-z_]+\\d*\\b|\\b[a-zA-Z_]\\d\\d+\b";
+  const usernamePattern = "\\b[a-zA-Z_][a-zA-Z_]+\\d*\\b|\\b[a-zA-Z_]\\d\\d+\b";
   const passwordPattern =
     "(?=^.{6,10}$)(=?.*[A-Z])(=?.*\\d*)\\w*|(?=^.{6,10}$)(=?.*\\d*)(=?.*[A-Z])\\w*";
 
