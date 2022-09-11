@@ -77,7 +77,7 @@ function AuthForm(props) {
               pattern={usernamePattern}
               placeholder={"Username"}
               title={
-                "Username should not start with a number and contain at least 2 alphanumeric characters"
+                "Username should not start with a number but contain only and at least 2 alphanumeric characters"
               }
               required={props.usernameRequired}
               value={username}
