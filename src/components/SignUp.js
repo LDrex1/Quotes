@@ -65,7 +65,9 @@ function SignUp() {
       <Wrapper image={image}>
         <AuthForm
           usernameInputDisplay={usernameInputDisplay}
+          usernameRequired={true}
           confirmPasswordInputDisplay={confirmPasswordInputDisplay}
+          confirmPasswordRequired={true}
           firstButton={"Sign Up"}
           firstButtonHandler={createUser}
           secondButton={"Sign Up with Google"}
