@@ -30,7 +30,6 @@ function Quotes() {
       {quotesData.map((quoteData, index) => {
         const { id, date, quote, username, likes, createdAt } =
           quoteData.data();
-        // console.log(new Date(quoteData.data().createdAt * 1000).getTime());
         const timePosted = calculateTimePassed(createdAt);
 
         return (
