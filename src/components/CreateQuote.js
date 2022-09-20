@@ -92,4 +92,5 @@ const Input = styled.textarea`
 const Button = styled.button`
   margin: auto;
   outline: 3px solid black;
+  cursor: pointer;
 `;
