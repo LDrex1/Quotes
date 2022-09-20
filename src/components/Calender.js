@@ -44,7 +44,7 @@ export function calculateTimePassed(timeStamp) {
     } ago`;
   }
   if (timeDifference > 10080 && timeDifference < 40320) {
-    return `Posted ${timeDifference / (60 * 24 * 7)} ${
+    return `Posted ${~~(timeDifference / (60 * 24 * 7))} ${
       timeDifference / (60 * 24 * 7) < 2 ? "week" : "weeks"
     } ago`;
   }
