@@ -166,3 +166,9 @@ a:hover {
     padding: 3px;
   }
 }
+
+@media (pointer: fine) {
+  button:hover {
+    opacity: 0.9;
+  }
+}
