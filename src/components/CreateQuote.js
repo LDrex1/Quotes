@@ -64,6 +64,7 @@ const Container = styled.div`
     left: 25px;
     opacity: 0.6;
     z-index: 2;
+    cursor: pointer;
 
     &:hover {
       opacity: 1;
