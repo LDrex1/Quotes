@@ -50,6 +50,11 @@ export function calculateTimePassed(timeStamp) {
   }
   if (timeDifference > 40320 && timeDifference < 483840) {
     return `Posted ${~~(timeDifference / 483840)} ${
+      timeDifference / 40320 < 2 ? "month" : "months"
+    } ago`;
+  }
+  if (timeDifference > 483840) {
+    return `Posted ${~~(timeDifference / 483840)} ${
       timeDifference / 483840 < 2 ? "year" : "years"
     } ago`;
   } else {
