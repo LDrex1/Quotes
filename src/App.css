@@ -164,9 +164,6 @@ a:hover {
 }
 
 @media (pointer: coarse), (hover: none) {
-  .cursor {
-    display: none !important;
-  }
   .input-div[title] {
     position: relative;
     display: flex;
