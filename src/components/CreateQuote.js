@@ -5,6 +5,7 @@ import { Timestamp, doc, setDoc, getDoc } from "@firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 import { auth, db } from "../firebase-config";
 import calender from "./Calender";
+import device from "./Devices";
 
 function CreateQuote() {
   const quoteInput = useRef();
@@ -60,14 +61,18 @@ export default CreateQuote;
 const Container = styled.div`
   & p {
     position: fixed;
-    bottom: 25%;
-    left: 25px;
+    top: 50px;
+    right: 3%;
     opacity: 0.6;
     z-index: 2;
     cursor: pointer;
 
     &:hover {
       opacity: 1;
+    }
+
+    @media ${device.mobileL} {
+      top: 90px;
     }
   }
 `;
