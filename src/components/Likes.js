@@ -36,7 +36,7 @@ function Likes({ id, likes }) {
   return (
     <>
       <Like theme={theme} likes={likes}>
-        <i onClick={likeHandler} class="fa fa-thumbs-up"></i>{" "}
+        <i onClick={likeHandler} className="fa fa-thumbs-up"></i>{" "}
         <span style={{ color: "green" }}>{likes?.length}</span>
       </Like>
     </>
