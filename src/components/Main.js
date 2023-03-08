@@ -17,4 +17,5 @@ export default Main;
 const Container = styled.div`
   max-height: 90vh;
   overflow-y: scroll;
+  padding-bottom: 15vh;
 `;
