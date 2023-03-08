@@ -4,6 +4,7 @@ import FooterG from "./Footer";
 import { useTheme } from "./ThemeProvider";
 import QuotesPageHeader from "./QuotesPageHeader";
 import Main from "./Main";
+import device from "./Devices";
 
 function QuotesPage() {
   const [theme, toggleTheme] = useTheme();
@@ -25,7 +26,8 @@ function QuotesPage() {
 export default QuotesPage;
 
 const Wrapper = styled.div`
-  min-height: 90vh;
+  height: 90vh;
+  overflow: hidden;
   position: relative;
   background: ${(props) => (props.theme === true ? "#ffffff" : "#222222")};
   color: ${(props) => (props.theme === true ? "black" : "whitesmoke")};
@@ -40,10 +42,14 @@ const Button = styled.button`
     background: ${(props) => (!(props.theme === true) ? "#ffffff" : "#222222")};
     color: ${(props) => (!(props.theme === true) ? "black" : "whitesmoke")};
     position: absolute;
-    bottom: 18%;
-    right: 5%;
+    bottom: 1%;
+    right: 2%;
     width: fit-content;
     opacity: 0.6;
     z-index: 2;
+
+    @media ${device.mobileM} {
+      bottom: 5%;
+    }
   }
 `;
