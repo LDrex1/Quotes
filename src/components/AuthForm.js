@@ -54,7 +54,6 @@ function AuthForm(props) {
   };
 
   const handlepasswordVisibility = (name) => {
-    console.log(passwordVisibility);
     setPasswordVisibility({
       ...passwordVisibility,
       [name]: passwordVisibility[name] === "text" ? "password" : "text",
@@ -116,7 +115,7 @@ function AuthForm(props) {
             ></Input>
             <i
               onClick={() => handlepasswordVisibility("password")}
-              class="fa fa-eye-slash"
+              className="fa fa-eye-slash"
             ></i>
           </InputDiv>
           <InputDiv style={props.confirmPasswordInputDisplay}>
