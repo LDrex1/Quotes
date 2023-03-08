@@ -38,7 +38,6 @@ function SignUp() {
   }, [image]);
 
   const createUser = async () => {
-    console.log("clicked");
     setErrMsg("");
     if (password === confirmPassword) {
       let userUid = await createUserWithEmailAndPassword(auth, email, password)
@@ -52,9 +51,7 @@ function SignUp() {
       setTimeout(() => {
         setCongrats(false);
         navigate("/");
-      }, 3500);
-      console.log("showh3");
-      console.log("created");
+      }, 4000);
     } else {
       setErrMsg("Password and Confirm Password do not match");
     }
