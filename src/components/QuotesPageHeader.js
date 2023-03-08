@@ -46,9 +46,13 @@ export default QuotesPageHeader;
 
 const Header = styled.header`
   background: green;
-  height: 33px;
+  height: 50px;
   display: flex;
   margin-bottom: 20px;
+
+  @media ${device.mobileM} {
+    height: 70px;
+  }
 `;
 
 const Span = styled.span`
@@ -72,11 +76,16 @@ const Div = styled.div`
   overflow: hidden;
   text-align: end;
 
+  .dropdown-content {
+    margin-top: 3px;
+  }
+
   &:hover {
     overflow: visible;
   }
   &:hover .dropdown-content {
     max-height: 100px;
+    margin-top: 0px;
   }
 `;
 
