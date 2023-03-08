@@ -27,13 +27,13 @@ function Quotes() {
 
   return (
     <>
-      {quotesData.map((quoteData, index) => {
+      {quotesData.map((quoteData) => {
         const { id, date, quote, username, likes, createdAt } =
           quoteData.data();
         const timePosted = calculateTimePassed(createdAt);
 
         return (
-          <QuotesDiv className="mb-1" theme={theme}>
+          <QuotesDiv key={id} className="mb-1" theme={theme}>
             <H5>{username}</H5>
             <P className="fw-600">
               <q>{quote}</q>
